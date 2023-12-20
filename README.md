@@ -14,7 +14,7 @@ ___
 
 #### 2: TRINH XUAN KHANH (Student ID: ) [5]
 
-#### 3: LU MINH KHANG (Student ID: ) [5]
+#### 3: LU MINH KHANG (Student ID: s3863969) [5]
 
 #### 4: TRINH QUANG HUY (Student ID: ) [5]
 
