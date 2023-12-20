@@ -12,11 +12,11 @@ ___
 
 #### 1: TRUONG HOANG TUAN KIET (Student ID: s3926873) [5]
 
-#### 2: TRINH XUAN KHANH (Student ID: ) [5]
+#### 2: TRINH XUAN KHANH (Student ID: s3927152) [5]
 
 #### 3: LU MINH KHANG (Student ID: s3863969) [5]
 
-#### 4: TRINH QUANG HUY (Student ID: ) [5]
+#### 4: TRINH QUANG HUY (Student ID: s3970818 ) [5]
 
 ___
 
