@@ -54,60 +54,163 @@
 //    }
 //}
 
-//Use MiniMax algorithm for guesser
+
+// Hill climbing
+// public class SecretKeyGuesser {
+
+//     // Constants defining the characters used in the key and the key's length
+//     private static final String CHARACTERS = "MOCHA";
+//     private static final int KEY_LENGTH = 12;
+
+//     // The start method begins the process of guessing the secret key
+//     public void start() {
+//         // Create an instance of the SecretKey class
+//         SecretKey key = new SecretKey();
+//         // Generate a random initial key
+//         String currentKey = generateRandomKey();
+//         // Get the initial score (number of correct characters in the key)
+//         int currentScore = key.guess(currentKey);
+
+//         // Loop until the correct key is found
+//         while (currentScore < KEY_LENGTH) {
+//             // Create a new key by modifying the current key
+//             String newKey = modifyKey(currentKey);
+//             // Get the score for the new key
+//             int newScore = key.guess(newKey);
+
+//             // If the new key is better (or equal), update the current key and score
+//             if (newScore > currentScore) {
+//                 currentKey = newKey;
+//                 currentScore = newScore;
+//             }
+
+//             // If the correct key is found, exit the loop
+//             if (newScore == KEY_LENGTH) {
+//                 break;
+//             }
+//         }
+
+//         // Print the found key
+//         System.out.println("I found the secret key. It is " + currentKey);
+//     }
+
+//     // Modifies the current key by changing one random character
+//     private String modifyKey(String key) {
+//         // Convert the string to a character array for modification
+//         char[] keyChars = key.toCharArray();
+//         // Randomly choose an index to modify
+//         int indexToModify = (int) (Math.random() * KEY_LENGTH);
+//         // Randomly choose a new character from the allowed characters
+//         char newChar = CHARACTERS.charAt((int) (Math.random() * CHARACTERS.length()));
+//         // Replace the character at the chosen index with the new character
+//         keyChars[indexToModify] = newChar;
+//         // Return the modified key as a new string
+//         return new String(keyChars);
+//     }
+
+//     // Generates a random key from the allowed characters
+//     private String generateRandomKey() {
+//         StringBuilder key = new StringBuilder();
+//         for (int i = 0; i < KEY_LENGTH; i++) {
+//             // Append a random character from CHARACTERS to the key
+//             key.append(CHARACTERS.charAt((int) (Math.random() * CHARACTERS.length())));
+//         }
+//         // Return the generated key as a string
+//         return key.toString();
+//     }
+// }
+
+
+// Hill Climbing thách đấu NHIỀU LẦN ĐOÁN HƠN NHƯNG ÍT COMPLEXITY HƠN
+// public class SecretKeyGuesser {
+
+//     private static final String LETTER = "MOCHA";
+//     private static final int SECRET_KEY_LENGTH = 12;
+//     private int last_modified_character_index = 0; // Index to keep track of last modified character
+//     private int last_modified_character_position = 0; // Position of the last modified character in the key
+
+//     public void start() {
+//         SecretKey key = new SecretKey();
+//         String currentKey = generateInitialKey();
+//         int currentScore = key.guess(currentKey);
+
+//         while (currentScore < SECRET_KEY_LENGTH) {
+//             String newKey = modifyKeySequentially(currentKey);
+//             int newScore = key.guess(newKey);
+
+//             if (newScore > currentScore) {
+//                 currentKey = newKey;
+//                 currentScore = newScore;
+//             }
+
+//             if (newScore == SECRET_KEY_LENGTH) {
+//                 break;
+//             }
+//         }
+
+//         System.out.println("The Secret key is: " + currentKey);
+//     }
+
+//     private String modifyKeySequentially(String key) {
+//         char[] keyChars = key.toCharArray();
+//         last_modified_character_index++;
+//         if (last_modified_character_index >= LETTER.length()) {
+//             last_modified_character_index = 0;
+//             last_modified_character_position++;
+//             if (last_modified_character_position >= SECRET_KEY_LENGTH) {
+//                 last_modified_character_position = 0;
+//             }
+//         }
+//         keyChars[last_modified_character_position] = LETTER.charAt(last_modified_character_index);
+//         return new String(keyChars);
+//     }
+
+//     private String generateInitialKey() {
+//         StringBuilder key = new StringBuilder();
+//         for (int i = 0; i < SECRET_KEY_LENGTH; i++) {
+//             key.append(LETTER.charAt(0)); // Start with the first character
+//         }
+//         return key.toString();
+//     }
+// }
+
+
+
+//a symmetric-key algorithm AAAAAAAAAAAA: 61 LẦN, CÁC SECRET KEY CÒN LẠI TỐT HƠN HILL CLIMBING
 public class SecretKeyGuesser {
 
+    private static final String CHARACTERS = "MOCHA";
+    private static final int KEY_LENGTH = 12;
+
     public void start() {
-        SecretKey secretKey = new SecretKey();
+        SecretKey key = new SecretKey();
+        StringBuilder currentKey = new StringBuilder("MMMMMMMMMMMM");
+        int currentScore = key.guess(currentKey.toString());
 
-        // Initialize the guessed key to all 'M's
-        StringBuilder guessedKey = new StringBuilder("MMMMMMMMMMMM");
-
-        int counter = 0;
-
-        while (true) {
-            int matches = secretKey.guess(guessedKey.toString());
-            counter++;
-
-            if (matches == 12) {
-                System.out.println("Correct Secret Key: " + guessedKey);
-                //System.out.println("Number of Guesses: " + counter);
-                break;
-            }
-
-            // Update the guessed key based on the Minimax algorithm
-            updateGuessedKey(guessedKey, secretKey, matches);
-        }
-    }
-
-    private void updateGuessedKey(StringBuilder guessedKey, SecretKey secretKey, int matches) {
-        // Implement a simplified Minimax algorithm to update the guessed key
-        // For simplicity, we choose the next character from the set {'M', 'O', 'C', 'H', 'A'}
-        for (int i = 0; i < guessedKey.length(); i++) {
-            if (guessedKey.charAt(i) != secretKey.correctKey.charAt(i)) {
-                char nextGuess = getNextGuess(guessedKey.charAt(i));
-                guessedKey.setCharAt(i, nextGuess);
-                break;
+        for (int i = 0; i < KEY_LENGTH; i++) {
+            for (int j = 0; j < CHARACTERS.length(); j++) {
+                char originalChar = currentKey.charAt(i);
+                char newChar = CHARACTERS.charAt(j);
+                currentKey.setCharAt(i, newChar);
+                int newScore = key.guess(currentKey.toString());
+                
+                if (newScore > currentScore) {
+                    currentScore = newScore; // Correct character found for this position
+                    break;
+                } else {
+                    currentKey.setCharAt(i, originalChar); // Revert if not correct
+                }
             }
         }
-    }
 
-    private char getNextGuess(char currentGuess) {
-        // Choose the next character in the set {'M', 'O', 'C', 'H', 'A'}
-        switch (currentGuess) {
-            case 'M':
-                return 'O';
-            case 'O':
-                return 'C';
-            case 'C':
-                return 'H';
-            case 'H':
-                return 'A';
-            case 'A':
-                return 'M';
-            default:
-                // This should not happen in a valid game scenario
-                throw new IllegalArgumentException("Invalid character: " + currentGuess);
-        }
+        System.out.println("I found the secret key. It is " + currentKey);
     }
 }
+
+
+
+
+
+
+
+
