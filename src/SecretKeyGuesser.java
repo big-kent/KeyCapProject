@@ -71,7 +71,7 @@ public class SecretKeyGuesser {
 
             if (matches == 12) {
                 System.out.println("Correct Secret Key: " + guessedKey);
-                System.out.println("Number of Guesses: " + counter);
+                //System.out.println("Number of Guesses: " + counter);
                 break;
             }
 
