@@ -54,9 +54,7 @@
 //    }
 //}
 
-
 //Use MiniMax algorithm for guesser
-
 public class SecretKeyGuesser {
 
     public void start() {
