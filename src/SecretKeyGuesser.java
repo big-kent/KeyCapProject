@@ -60,7 +60,6 @@
 //Space Complexity:
 //Best case: MMMMMMMMMMMM
 //Worst case: AAAAAAAAAAAA for now
-
 // public class SecretKeyGuesser {
 
 //     private static final String CHARACTERS = "MOCHA";
@@ -92,8 +91,8 @@
 // }
 
 
-// Hill Climbing without any FrameWork
-// More guess time than Symmetric-key
+//Hill Climbing without any FrameWork
+//More guess time than Symmetric-key
 //Time Complexity:
 //Space Complexity:
 //Best case:
@@ -151,7 +150,7 @@
 
 
 
-// Update Symmetric algorithm
+//New Symmetric Algorithm
 public class SecretKeyGuesser {
 
     private static final String CHARACTERS = "MOCHA";
