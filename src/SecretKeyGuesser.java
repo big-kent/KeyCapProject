@@ -60,6 +60,7 @@
 //Space Complexity:
 //Best case: MMMMMMMMMMMM
 //Worst case: AAAAAAAAAAAA for now
+
 // public class SecretKeyGuesser {
 
 //     private static final String CHARACTERS = "MOCHA";
@@ -90,13 +91,28 @@
 //     }
 // }
 
+//================================================================================================================================================================================
 
-//Hill Climbing without any FrameWork
-//More guess time than Symmetric-key
+// Hill Climbing without any FrameWork
+// More guess time than Symmetric-key
 //Time Complexity:
 //Space Complexity:
 //Best case:
 //Worst case:
+
+    //COHOMMOCAMHA 60/24153900 nanoseconds
+    //CHMCOAMOHAMO 57/21690600 nanoseconds
+    //AOMHCMHMOHAC 58/22394900 nanoseconds
+    //OCMAHAMOHMCO 57/27833600 nanoseconds
+    //OMCAMOHCHOMA 60/22900700 nanoseconds
+    //MMMMMMMMMMMM 1/21185100 nanoseconds
+    //AAAAAAAAAAAA 60/25850100 nanoseconds
+    //OOOOOOOOOOOO 57/20588900 nanoseconds
+    //CCCCCCCCCCCC 58/22579400 nanoseconds
+    //HHHHHHHHHHHH 59/20634200 nanoseconds
+    // MOCHA
+
+
 // public class SecretKeyGuesser {
     
 //     private static final String LETTER = "MOCHA";
@@ -148,9 +164,22 @@
 //     }
 // }
 
+//==================================================================================================================================================================
 
+// Symmetric algorithm
+    //COHOMMOCAMHA 34/21397300 nanoseconds
+    //CHMCOAMOHAMO 34/22247000 nanoseconds
+    //AOMHCMHMOHAC 36/21396000 nanoseconds
+    //OCMAHAMOHMCO 34/21819500 nanoseconds
+    //OMCAMOHCHOMA 34/20707700 nanoseconds
+    //MMMMMMMMMMMM 1/20928900 nanoseconds
+    //AAAAAAAAAAAA 49/22246800 nanoseconds
+    //OOOOOOOOOOOO 13/20745600 nanoseconds
+    //CCCCCCCCCCCC 25/20971900 nanoseconds
+    //HHHHHHHHHHHH 37/21957800 nanoseconds
 
-//New Symmetric Algorithm
+    // MOCHA
+
 public class SecretKeyGuesser {
 
     private static final String CHARACTERS = "MOCHA";

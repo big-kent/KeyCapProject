@@ -4,18 +4,20 @@ public class SecretKey {
 
   public SecretKey() {
     // for the real test, your program will not know this
-    correctKey = "AAAAAAAAAAAA"; 
+    correctKey = "HHHHHHHHHHHH"; 
     counter = 0;
-    //COHOMMOCAMHA 46/10484500 
-    //CHMCOAMOHAMO 46/10940500 
-    //AOMHCMHMOHAC 48/10657900
-    //OCMAHAMOHMCO 46/10823100 
-    //OMCAMOHCHOMA 46/10913200
-    //MMMMMMMMMMMM error
-    //AAAAAAAAAAAA 61/10413300
-    //OOOOOOOOOOOO 25/11330500
-    //CCCCCCCCCCCC 37/12462400
-    //HHHHHHHHHHHH 49/10748500
+    //COHOMMOCAMHA 34/21397300 nanoseconds
+    //CHMCOAMOHAMO 34/22247000 nanoseconds
+    //AOMHCMHMOHAC 36/21396000 nanoseconds
+    //OCMAHAMOHMCO 34/21819500 nanoseconds
+    //OMCAMOHCHOMA 34/20707700 nanoseconds
+    //MMMMMMMMMMMM 1/20928900 nanoseconds
+    //AAAAAAAAAAAA 49/22246800 nanoseconds
+    //OOOOOOOOOOOO 13/20745600 nanoseconds
+    //CCCCCCCCCCCC 25/20971900 nanoseconds
+    //HHHHHHHHHHHH 37/21957800 nanoseconds
+
+    // MOCHA
   }
 
   public int guess(String guessedKey) {
