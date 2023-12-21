@@ -176,7 +176,7 @@
 
 
 
-//a symmetric-key algorithm AAAAAAAAAAAA: 61 LẦN, CÁC SECRET KEY CÒN LẠI TỐT HƠN HILL CLIMBING
+//a symmetric-key algorithm AAAAAAAAAAAA: 61 LẦN, CÁC SECRET KEY CÒN LẠI TỐT HƠN HILL CLIMBING, complexity nhiều hơn, thời gian ra kết quả chậm hơn không đáng kể so với hill climbing
 public class SecretKeyGuesser {
 
     private static final String CHARACTERS = "MOCHA";
