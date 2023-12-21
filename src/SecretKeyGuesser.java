@@ -58,6 +58,8 @@
 //This case "AAAAAAAAAAAA" have 61 guessing more than Hill Climbing with the same correctKey
 //Time Complexity:
 //Space Complexity:
+//Best case: MMMMMMMMMMMM
+//Worst case: AAAAAAAAAAAA for now
 public class SecretKeyGuesser {
 
     private static final String CHARACTERS = "MOCHA";
@@ -93,6 +95,8 @@ public class SecretKeyGuesser {
 // More guess time than Symmetric-key
 //Time Complexity:
 //Space Complexity:
+//Best case:
+//Worst case:
 // public class SecretKeyGuesser {
     
 //     private static final String LETTER = "MOCHA";

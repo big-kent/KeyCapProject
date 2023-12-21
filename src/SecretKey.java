@@ -4,8 +4,18 @@ public class SecretKey {
 
   public SecretKey() {
     // for the real test, your program will not know this
-    correctKey = "OAHMCOCHMOMA"; //OAHMCOCHMOMA
+    correctKey = "HHHHHHHHHHHH"; 
     counter = 0;
+    //COHOMMOCAMHA 46/10484500 
+    //CHMCOAMOHAMO 46/10940500 
+    //AOMHCMHMOHAC 48/10657900
+    //OCMAHAMOHMCO 46/10823100 
+    //OMCAMOHCHOMA 46/10913200
+    //MMMMMMMMMMMM error
+    //AAAAAAAAAAAA 61/10413300
+    //OOOOOOOOOOOO 25/11330500
+    //CCCCCCCCCCCC 37/12462400
+    //HHHHHHHHHHHH 49/10748500
   }
 
   public int guess(String guessedKey) {
@@ -31,6 +41,20 @@ public class SecretKey {
   }
 
   public static void main(String[] args) {
+
+    long start = System.nanoTime();
+
+    // call the method
     new SecretKeyGuesser().start();
+
+    // get the end time
+    long end = System.nanoTime();
+
+    // execution time in seconds
+    long execution = (end - start);
+    System.out.println("Execution time of Recursive Method is");
+    System.out.println(execution + " nanoseconds");
+
+    // new SecretKeyGuesser().start();
   }
 }
