@@ -1,0 +1,65 @@
+public class SecretKeyGuesser {                                                                                                                                         COST                                    OCCURRENCE
+    //Initialize the letters that appear in the secret key including "M","O","C","H","A".   
+    private static final String LETTER = "MOCHA";                                                                                                                        C1                                          1              
+    //Initialize the secret key length since its a constant 12. 
+    private static final int SECRET_KEY_LENGTH = 12;                                                                                                                     C2                                          1
+    //Initialize the index to track the recent character that has been changed
+    private int last_modified_character_index = 0;                                                                                                                       C3                                          1
+    //Initialize the variable to save the position of the recent changed character
+    private int last_modified_character_position = 0;                                                                                                                    C4                                          1
+    
+    public void start(){                                                                                                                                
+        SecretKey key = new SecretKey();                                                                                                                                 C5                                          1
+        String currentKey = generateInitialKey();                                                                                                                        C6                                          1
+        int currentScore = key.guess(currentKey);                                                                                                                        C7                                          1
+
+        while (currentScore < SECRET_KEY_LENGTH){                                                                                                                        C8                                      Log(N) + 1
+            String newKey = modifyKeySequentially(currentKey);                                                                                                           C9                                        Log(N)
+            int newScore = key.guess(newKey);                                                                                                                            C10                                       Log(N)
+
+            if (newScore > currentScore){                                                                                                                                C11                                       Log(N)
+                currentKey = newKey;                                                                                                                                     C12                                       Log(N)
+                currentScore = newScore;                                                                                                                                 C13                                       Log(N)
+            }
+
+            if (newScore == SECRET_KEY_LENGTH){                                                                                                                          C14                                       Log(N)
+                break;                                                                                                                                                   C15                                         1
+            }
+        }
+        System.out.println("The Secret key is: " + currentKey);                                                                                                          C16                                         1
+    }
+    METHOD COST: C5*1 + ... + C8*(log(N) + 1) + C9*(log(N)) + ... + C16*1
+    TIME COMPLEXITY: O(log(N) + 1)
+
+    private String modifyKeySequentially(String key){
+        //Change the secret key string into array to change one character at a time.
+        char[] key_character = key.toCharArray();                                                                                                                        C17                                       Log(N)
+        last_modified_character_index++;                                                                                                                                 C18                                       Log(N)
+        if (last_modified_character_index >= LETTER.length()) {                                                                                                          C19                                       Log(N)
+            last_modified_character_index = 0;                                                                                                                           C20                                       Log(N)
+            last_modified_character_position++;                                                                                                                          C21                                       Log(N)
+            if (last_modified_character_position >= SECRET_KEY_LENGTH) {                                                                                                 C22                                       Log(N)
+                last_modified_character_position = 0;                                                                                                                    C23                                       Log(N)
+            }
+        }
+        key_character[last_modified_character_position] = LETTER.charAt(last_modified_character_index);                                                                  C24                                       Log(N)
+        return new String(key_character);                                                                                                                                C25                                       Log(N)
+    }
+    METHOD COST: C17*(log(N)) + ... + C25*(log(N))
+    TIME COMPLEXITY: O(log(N))
+    
+    private String generateInitialKey() {
+        StringBuilder key_sb = new StringBuilder();                                                                                                                      C26                                         1
+        //Initialize an initial key to change the letter
+        for (int i = 0; i < SECRET_KEY_LENGTH; i++){                                                                                                                     C27                                       N + 1
+            //Starting from the first character
+            key_sb.append(LETTER.charAt(0));                                                                                                                             C28                                         N
+        }
+        return key_sb.toString();                                                                                                                                        C29                                         1
+    }
+    METHOD COST: C26*1 + C27*(N+1) + C28*N + C29*1
+    TIME COMPLEXITY: O(N + 1)
+}
+
+OTAL COST: C1*1 + C2*1 + ... + C8*(log(N) + 1) + C9*(log(N)) + ... + C27*(N+1) + C28*N + C29*1
+TIME COMPLEXITY: O(N + 1)
