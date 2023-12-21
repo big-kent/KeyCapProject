@@ -1,0 +1,65 @@
+//Hill climbing but have Java Framework
+//Keep code for further research
+public class SecretKeyGuesser {
+
+    // Constants defining the characters used in the key and the key's length
+    private static final String CHARACTERS = "MOCHA";
+    private static final int KEY_LENGTH = 12;
+    
+    // The start method begins the process of guessing the secret key
+    public void start() {
+        // Create an instance of the SecretKey class
+        SecretKey key = new SecretKey();
+        // Generate a random initial key
+        String currentKey = generateRandomKey();
+        // Get the initial score (number of correct characters in the key)
+        int currentScore = key.guess(currentKey);
+
+        // Loop until the correct key is found
+        while (currentScore < KEY_LENGTH) {
+            // Create a new key by modifying the current key
+            String newKey = modifyKey(currentKey);
+            // Get the score for the new key
+            int newScore = key.guess(newKey);
+
+            // If the new key is better (or equal), update the current key and score
+            if (newScore > currentScore) {
+                currentKey = newKey;
+                currentScore = newScore;
+            }
+
+            // If the correct key is found, exit the loop
+            if (newScore == KEY_LENGTH) {
+                break;
+            }
+        }
+
+        // Print the found key
+        System.out.println("I found the secret key. It is " + currentKey);
+    }
+
+    // Modifies the current key by changing one random character
+    private String modifyKey(String key) {
+        // Convert the string to a character array for modification
+        char[] keyChars = key.toCharArray();
+        // Randomly choose an index to modify
+        int indexToModify = (int) (Math.random() * KEY_LENGTH);
+        // Randomly choose a new character from the allowed characters
+        char newChar = CHARACTERS.charAt((int) (Math.random() * CHARACTERS.length()));
+        // Replace the character at the chosen index with the new character
+        keyChars[indexToModify] = newChar;
+        // Return the modified key as a new string
+        return new String(keyChars);
+    }
+
+    // Generates a random key from the allowed characters
+    private String generateRandomKey() {
+        StringBuilder key = new StringBuilder();
+        for (int i = 0; i < KEY_LENGTH; i++) {
+            // Append a random character from CHARACTERS to the key
+            key.append(CHARACTERS.charAt((int) (Math.random() * CHARACTERS.length())));
+        }
+        // Return the generated key as a string
+        return key.toString();
+    }
+}
