@@ -60,35 +60,36 @@
 //Space Complexity:
 //Best case: MMMMMMMMMMMM
 //Worst case: AAAAAAAAAAAA for now
-public class SecretKeyGuesser {
 
-    private static final String CHARACTERS = "MOCHA";
-    private static final int KEY_LENGTH = 12;
+// public class SecretKeyGuesser {
 
-    public void start() {
-        SecretKey key = new SecretKey();
-        StringBuilder currentKey = new StringBuilder("MMMMMMMMMMMM");
-        int currentScore = key.guess(currentKey.toString());
+//     private static final String CHARACTERS = "MOCHA";
+//     private static final int KEY_LENGTH = 12;
 
-        for (int i = 0; i < KEY_LENGTH; i++) {
-            for (int j = 0; j < CHARACTERS.length(); j++) {
-                char originalChar = currentKey.charAt(i);
-                char newChar = CHARACTERS.charAt(j);
-                currentKey.setCharAt(i, newChar);
-                int newScore = key.guess(currentKey.toString());
+//     public void start() {
+//         SecretKey key = new SecretKey();
+//         StringBuilder currentKey = new StringBuilder("MMMMMMMMMMMM");
+//         int currentScore = key.guess(currentKey.toString());
+
+//         for (int i = 0; i < KEY_LENGTH; i++) {
+//             for (int j = 0; j < CHARACTERS.length(); j++) {
+//                 char originalChar = currentKey.charAt(i);
+//                 char newChar = CHARACTERS.charAt(j);
+//                 currentKey.setCharAt(i, newChar);
+//                 int newScore = key.guess(currentKey.toString());
                 
-                if (newScore > currentScore) {
-                    currentScore = newScore; // Correct character found for this position
-                    break;
-                } else {
-                    currentKey.setCharAt(i, originalChar); // Revert if not correct
-                }
-            }
-        }
+//                 if (newScore > currentScore) {
+//                     currentScore = newScore; // Correct character found for this position
+//                     break;
+//                 } else {
+//                     currentKey.setCharAt(i, originalChar); // Revert if not correct
+//                 }
+//             }
+//         }
 
-        System.out.println("I found the secret key. It is " + currentKey);
-    }
-}
+//         System.out.println("I found the secret key. It is " + currentKey);
+//     }
+// }
 
 
 // Hill Climbing without any FrameWork
@@ -150,4 +151,37 @@ public class SecretKeyGuesser {
 
 
 
+// Update Symmetric algorithm
+public class SecretKeyGuesser {
+
+    private static final String CHARACTERS = "MOCHA";
+    private static final int KEY_LENGTH = 12;
+
+    public void start() {
+        SecretKey key = new SecretKey();
+        StringBuilder currentKey = new StringBuilder("MMMMMMMMMMMM");
+        int currentScore = key.guess(currentKey.toString());
+
+        for (int i = 0; i < KEY_LENGTH; i++) {
+            char originalChar = currentKey.charAt(i);
+            for (int j = 0; j < CHARACTERS.length(); j++) {
+                char newChar = CHARACTERS.charAt(j);
+                if (newChar != originalChar) {
+                    currentKey.setCharAt(i, newChar);
+                    int newScore = key.guess(currentKey.toString());
+
+                    if (newScore > currentScore) {
+                        currentScore = newScore; // Correct character found for this position
+                        break;
+                    } else {
+                        currentKey.setCharAt(i, originalChar); // Revert if not correct
+                    }
+                }
+            }
+        }
+
+        System.out.println("I found the secret key. It is " + currentKey);
+    }
+
+}
 
