@@ -54,14 +54,47 @@
 //    }
 //}
 
+//Symmetric-key Algorithm
+//This case "AAAAAAAAAAAA" have 61 guessing more than Hill Climbing with the same correctKey
+//Time Complexity:
+//Space Complexity:
+public class SecretKeyGuesser {
 
-// Hill climbing
+    private static final String CHARACTERS = "MOCHA";
+    private static final int KEY_LENGTH = 12;
+
+    public void start() {
+        SecretKey key = new SecretKey();
+        StringBuilder currentKey = new StringBuilder("MMMMMMMMMMMM");
+        int currentScore = key.guess(currentKey.toString());
+
+        for (int i = 0; i < KEY_LENGTH; i++) {
+            for (int j = 0; j < CHARACTERS.length(); j++) {
+                char originalChar = currentKey.charAt(i);
+                char newChar = CHARACTERS.charAt(j);
+                currentKey.setCharAt(i, newChar);
+                int newScore = key.guess(currentKey.toString());
+                
+                if (newScore > currentScore) {
+                    currentScore = newScore; // Correct character found for this position
+                    break;
+                } else {
+                    currentKey.setCharAt(i, originalChar); // Revert if not correct
+                }
+            }
+        }
+
+        System.out.println("I found the secret key. It is " + currentKey);
+    }
+}
+
+
+// Hill climbing but have Java Framework
+//Keep code for further research
 // public class SecretKeyGuesser {
-
 //     // Constants defining the characters used in the key and the key's length
 //     private static final String CHARACTERS = "MOCHA";
 //     private static final int KEY_LENGTH = 12;
-
 //     // The start method begins the process of guessing the secret key
 //     public void start() {
 //         // Create an instance of the SecretKey class
@@ -120,8 +153,8 @@
 //     }
 // }
 
-
-// Hill Climbing thách đấu NHIỀU LẦN ĐOÁN HƠN NHƯNG ÍT COMPLEXITY HƠN
+// Hill Climbing without any FrameWork
+// More guess time than Symmetric-key
 // public class SecretKeyGuesser {
 
 //     private static final String LETTER = "MOCHA";
@@ -173,42 +206,6 @@
 //         return key.toString();
 //     }
 // }
-
-
-
-//a symmetric-key algorithm AAAAAAAAAAAA: 61 LẦN, CÁC SECRET KEY CÒN LẠI TỐT HƠN HILL CLIMBING, complexity nhiều hơn, thời gian ra kết quả chậm hơn không đáng kể so với hill climbing
-public class SecretKeyGuesser {
-
-    private static final String CHARACTERS = "MOCHA";
-    private static final int KEY_LENGTH = 12;
-
-    public void start() {
-        SecretKey key = new SecretKey();
-        StringBuilder currentKey = new StringBuilder("MMMMMMMMMMMM");
-        int currentScore = key.guess(currentKey.toString());
-
-        for (int i = 0; i < KEY_LENGTH; i++) {
-            for (int j = 0; j < CHARACTERS.length(); j++) {
-                char originalChar = currentKey.charAt(i);
-                char newChar = CHARACTERS.charAt(j);
-                currentKey.setCharAt(i, newChar);
-                int newScore = key.guess(currentKey.toString());
-                
-                if (newScore > currentScore) {
-                    currentScore = newScore; // Correct character found for this position
-                    break;
-                } else {
-                    currentKey.setCharAt(i, originalChar); // Revert if not correct
-                }
-            }
-        }
-
-        System.out.println("I found the secret key. It is " + currentKey);
-    }
-}
-
-
-
 
 
 
